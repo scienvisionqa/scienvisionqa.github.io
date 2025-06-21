@@ -1,1 +1,502 @@
-<!DOCTYPE html><body><h1>Hello</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScienVisionQA: When Localization Matters for Scientific Document Understanding</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Anonymous Review Banner -->
+    <div class="review-banner">
+        Under peer-review — authors withheld.
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="title">ScienVisionQA: When Localization Matters for Scientific Document Understanding</h1>
+            <p class="tagline">Benchmarking page-level localization for scientific PDFs</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-tabs">
+                <li><button class="nav-btn active" data-tab="home">Home</button></li>
+                <li><button class="nav-btn" data-tab="dataset">Dataset</button></li>
+                <li><button class="nav-btn" data-tab="methodology">Methodology</button></li>
+                <li><button class="nav-btn" data-tab="results">Results</button></li>
+                <li><button class="nav-btn" data-tab="supplementary">Supplementary</button></li>
+                <li><button class="nav-btn" data-tab="faq">FAQ/Resources</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- HOME TAB -->
+            <section id="home" class="tab-content active">
+                <div class="abstract-section">
+                    <h2>Abstract</h2>
+                    <p class="abstract">
+                        Modern vision–language models (VLMs) excel at free-form reasoning over images, yet they still struggle with precise localization in complex visual documents. This limitation becomes particularly evident when processing scientific PDFs, where models must identify and reason about specific visual elements scattered across multi-page documents. We introduce <strong>ScienVisionQA</strong>, a benchmark designed to evaluate page-level localization capabilities in scientific document understanding. Our dataset contains 1,323 question-answer pairs derived from 300 scientific papers across physics, mathematics, computer science, and life sciences. Each question targets a specific visual element (figure, table, equation, or caption) on a designated page, requiring models to first locate the relevant page before reasoning about its contents. Through extensive evaluation of state-of-the-art VLMs, we demonstrate a significant localization gap: models achieve 11-31 percentage points higher accuracy when provided with the target page compared to the full document. To address this challenge, we propose a simple yet effective distractor training approach that teaches models to identify relevant pages among distractors, improving performance by up to 11.6 points. Our analysis reveals that while current VLMs possess strong reasoning capabilities, their localization abilities remain a critical bottleneck for complex document understanding tasks.
+                    </p>
+                </div>
+
+                <div class="contributions-section">
+                    <h2>Key Contributions</h2>
+                    <div class="contributions-grid">
+                        <div class="contribution-card">
+                            <h3>🎯 Benchmark</h3>
+                            <p>Introduce ScienVisionQA for localized visual reasoning in scientific documents.</p>
+                        </div>
+                        <div class="contribution-card">
+                            <h3>📊 Quantify Gap</h3>
+                            <p>Page-level guidance boosts accuracy by <strong>11–31 pp</strong> across multiple VLM families.</p>
+                        </div>
+                        <div class="contribution-card">
+                            <h3>🎓 Distractor Training</h3>
+                            <p>Simple training teaches models to identify relevant pages among distractors.</p>
+                        </div>
+                        <div class="contribution-card">
+                            <h3>🔗 Resources</h3>
+                            <p>Code, data & checkpoints will be released to spur future research.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DATASET TAB -->
+            <section id="dataset" class="tab-content">
+                <div class="dataset-overview">
+                    <h2>Dataset Overview</h2>
+                    <div class="stats-box">
+                        <h3>ScienVisionQA at a Glance</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Samples</span>
+                                <span class="stat-value">1,323</span>
+                                <span class="stat-desc">single-page QA pairs</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Papers</span>
+                                <span class="stat-value">300</span>
+                                <span class="stat-desc">scientific documents</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Primary Domains</span>
+                                <span class="stat-value">Multi</span>
+                                <span class="stat-desc">Physics, Math, CS, Life Sciences + others</span>
+                            </div>
+                        </div>
+                        <div class="stats-detailed">
+                            <div class="stat-row">
+                                <span class="stat-label">Visual elements</span>
+                                <span class="stat-breakdown">Figures 54.9%, Tables 22.2%, Equations 17.8%, Captions 5.1%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Answer types</span>
+                                <span class="stat-breakdown">Numeric 45.6%, Textual 36.1%, Symbolic 14.5%, Expression 3.9%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Modality mix</span>
+                                <span class="stat-breakdown">Mixed 61.9%, Pure-Vision 34.8%, Pure-Text 3.3%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-table">
+                    <h3>Table 1: Comparison of Document Understanding Datasets</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Dataset</th>
+                                    <th>Pages</th>
+                                    <th>QA pairs</th>
+                                    <th>Multi-page?</th>
+                                    <th>Page-level?</th>
+                                    <th>Primary task</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>DocVQA</td>
+                                    <td>12,000</td>
+                                    <td>50,000</td>
+                                    <td>✗</td>
+                                    <td>✗</td>
+                                    <td>Document VQA</td>
+                                </tr>
+                                <tr>
+                                    <td>InfographicVQA</td>
+                                    <td>5,500</td>
+                                    <td>30,000</td>
+                                    <td>✗</td>
+                                    <td>✗</td>
+                                    <td>Infographic VQA</td>
+                                </tr>
+                                <tr>
+                                    <td>SciTSR†</td>
+                                    <td>15,000</td>
+                                    <td>—</td>
+                                    <td>✗</td>
+                                    <td>✗</td>
+                                    <td>Table recognition</td>
+                                </tr>
+                                <tr>
+                                    <td>MP-DocVQA</td>
+                                    <td>48,000</td>
+                                    <td>46,000</td>
+                                    <td>✓</td>
+                                    <td>✗</td>
+                                    <td>Multi-page VQA</td>
+                                </tr>
+                                <tr>
+                                    <td>Docmatix</td>
+                                    <td>2.4M</td>
+                                    <td>9.5M</td>
+                                    <td>✓</td>
+                                    <td>✗</td>
+                                    <td>Large-scale VQA</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td><strong>ScienVisionQA (ours)</strong></td>
+                                    <td><strong>1,323</strong></td>
+                                    <td><strong>1,323</strong></td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                    <td>Localized Doc VQA</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="figure-placeholder">
+                    <div class="placeholder-box">
+                        <h3>Figure 2: Dataset composition across visual element types, answer formats, and information sources.</h3>
+                        <div class="placeholder-content">
+                            <p>📊 [Placeholder for figure2.png]</p>
+                            <p class="alt-text">Three bar/pie charts showing distribution of element types, answer formats and modality mix.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- METHODOLOGY TAB -->
+            <section id="methodology" class="tab-content">
+                <h2>Methodology</h2>
+                
+                <div class="figure-placeholder">
+                    <div class="placeholder-box">
+                        <h3>Figure 1: ScienVisionQA construction pipeline and example question.</h3>
+                        <div class="placeholder-content">
+                            <p>🔄 [Placeholder for figure1.png]</p>
+                            <p class="alt-text">Pipeline diagram plus example scientific page with highlighted table cell.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="methodology-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Localized Question Generation</h3>
+                            <p>GPT-4o views each page image in isolation and produces a question targeting tiny details on that page only.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Teacher–Student Answer Filtering</h3>
+                            <p>Qwen 2.5-VL answers; Claude 3.7 independently answers; only pairs where answers agree are kept.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>LLM Judge</h3>
+                            <p>o3-mini automatically adjudicates semantic equivalence to scale quality control.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RESULTS TAB -->
+            <section id="results" class="tab-content">
+                <h2>Results</h2>
+                
+                <div class="results-section">
+                    <h3>Table 2: Localization Gap on ScienVisionQA</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Full PDF</th>
+                                    <th>Single Page</th>
+                                    <th>Δ (↑)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>GPT-4o-mini</td>
+                                    <td>53.7</td>
+                                    <td>65.1</td>
+                                    <td class="positive">+11.4</td>
+                                </tr>
+                                <tr>
+                                    <td>Gemini 2.0 Flash</td>
+                                    <td>53.4</td>
+                                    <td>84.4</td>
+                                    <td class="positive">+31.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Mistral Small 3.1</td>
+                                    <td>74.7</td>
+                                    <td>87.8</td>
+                                    <td class="positive">+17.5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h3>Table 3: Distractor Training Results</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Prompt</th>
+                                    <th>Baseline</th>
+                                    <th>Best (k, Δ)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Qwen-7B</td>
+                                    <td>Vanilla</td>
+                                    <td>52.7</td>
+                                    <td>63.6 (k = 20, +10.9)</td>
+                                </tr>
+                                <tr>
+                                    <td>Qwen-7B</td>
+                                    <td>CoT</td>
+                                    <td>—</td>
+                                    <td>64.3 (k = 20, +11.6)</td>
+                                </tr>
+                                <tr>
+                                    <td>InternVL-8B</td>
+                                    <td>Vanilla</td>
+                                    <td>54.5</td>
+                                    <td>58.8 (k = 20, +4.3)</td>
+                                </tr>
+                                <tr>
+                                    <td>InternVL-8B</td>
+                                    <td>CoT</td>
+                                    <td>—</td>
+                                    <td>58.9 (k = 5, +4.4)</td>
+                                </tr>
+                                <tr>
+                                    <td>Mistral-24B</td>
+                                    <td>Vanilla</td>
+                                    <td>74.7</td>
+                                    <td>79.0 (k = 10, +4.3)</td>
+                                </tr>
+                                <tr>
+                                    <td>Mistral-24B</td>
+                                    <td>CoT</td>
+                                    <td>—</td>
+                                    <td>81.2 (k = 20, +6.5)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="figure-placeholder">
+                    <div class="placeholder-box">
+                        <h3>Figure 3: Effect of distractor count (k) on accuracy across models and prompting strategies.</h3>
+                        <div class="placeholder-content">
+                            <p>📈 [Placeholder for figure3.png]</p>
+                            <p class="alt-text">Line chart accuracy vs. number of distractor pages.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <details class="collapsible-section">
+                    <summary>
+                        <h3>Table 4: Transfer to MP-DocVQA</h3>
+                    </summary>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Prompt</th>
+                                    <th>Baseline</th>
+                                    <th>k = 3</th>
+                                    <th>Δ (↑)</th>
+                                    <th>Page Acc. %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Qwen-7B</td>
+                                    <td>Vanilla</td>
+                                    <td>77.1</td>
+                                    <td>81.6</td>
+                                    <td class="positive">+4.5</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Qwen-7B</td>
+                                    <td>CoT</td>
+                                    <td>79.7</td>
+                                    <td>81.6</td>
+                                    <td class="positive">+2.6</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>InternVL-8B</td>
+                                    <td>Vanilla</td>
+                                    <td>77.4</td>
+                                    <td>80.5</td>
+                                    <td class="positive">+3.1</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>InternVL-8B</td>
+                                    <td>CoT</td>
+                                    <td>81.9</td>
+                                    <td>—</td>
+                                    <td class="positive">+4.5</td>
+                                    <td>65.1</td>
+                                </tr>
+                                <tr>
+                                    <td>Mistral-24B</td>
+                                    <td>Vanilla</td>
+                                    <td>79.0</td>
+                                    <td>80.6</td>
+                                    <td class="positive">+1.6</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Mistral-24B</td>
+                                    <td>CoT</td>
+                                    <td>82.6</td>
+                                    <td>—</td>
+                                    <td class="positive">+3.6</td>
+                                    <td>82.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+            </section>
+
+            <!-- SUPPLEMENTARY TAB -->
+            <section id="supplementary" class="tab-content">
+                <h2>Supplementary Material</h2>
+                
+                <div class="download-section">
+                    <h3>Downloads</h3>
+                    <div class="download-grid">
+                        <div class="download-card">
+                            <h4>📄 Supplementary PDF</h4>
+                            <p>Complete appendix with additional experimental details and analysis.</p>
+                            <a href="#" class="download-btn">Download supplementary.pdf</a>
+                        </div>
+                        
+                        <div class="download-card">
+                            <h4>📊 Sample Data</h4>
+                            <p>Representative JSON/CSV files showing data format and structure.</p>
+                            <a href="#" class="download-btn">Download sample_data.zip</a>
+                        </div>
+                        
+                        <div class="download-card placeholder-card">
+                            <h4>💾 Code & Checkpoints</h4>
+                            <p>Full implementation and trained model checkpoints.</p>
+                            <div class="placeholder-link">Available after acceptance</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="note-section">
+                    <p><strong>Note:</strong> As this work is under peer review, complete code and model checkpoints will be released upon acceptance to ensure reproducibility and support future research.</p>
+                </div>
+            </section>
+
+            <!-- FAQ TAB -->
+            <section id="faq" class="tab-content">
+                <h2>FAQ & Resources</h2>
+                
+                <div class="faq-section">
+                    <div class="faq-item">
+                        <h3>What is page-level localization?</h3>
+                        <p>Page-level localization refers to the ability of vision-language models to first identify which specific page in a multi-page document contains the information relevant to answering a question, before attempting to reason about the visual content on that page. This is a critical capability for processing scientific PDFs where relevant information may be scattered across many pages.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Why remove author names?</h3>
+                        <p>This work is currently under peer review at a major conference. To maintain the blind review process, all author names and institutional affiliations have been temporarily removed. Full attribution will be provided upon publication.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>How is ScienVisionQA different from existing datasets?</h3>
+                        <p>Unlike existing document understanding datasets that focus on single-page documents or don't require page-level localization, ScienVisionQA specifically tests whether models can identify the correct page containing relevant information within multi-page scientific documents before reasoning about the content.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What makes the localization gap significant?</h3>
+                        <p>Our experiments show that state-of-the-art VLMs perform 11-31 percentage points better when given the target page directly compared to the full document. This substantial gap indicates that current models struggle with the localization aspect of document understanding, even when their reasoning capabilities are strong.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-section">
+                    <h3>Contact</h3>
+                    <p>For questions or feedback about this work, please use the anonymous contact form below. We will respond to inquiries during the review period while maintaining anonymity.</p>
+                    
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Brief description of your inquiry">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Your question or feedback..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email (optional)</label>
+                            <input type="email" id="email" name="email" placeholder="For follow-up responses">
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 ScienVisionQA. Under peer review - temporary anonymous website.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
