@@ -16,7 +16,7 @@
     <header class="header">
         <div class="container">
             <h1 class="title">ScienVisionQA: When Localization Matters for Scientific Document Understanding</h1>
-            <p class="tagline">Benchmarking page-level localization for scientific PDFs</p>
+            <p class="tagline">Benchmarking page-level localization for scientific papers</p>
         </div>
     </header>
 
@@ -43,7 +43,7 @@
                 <div class="abstract-section">
                     <h2>Abstract</h2>
                     <p class="abstract">
-                        Modern vision–language models (VLMs) excel at free-form reasoning over images, yet they still struggle with precise localization in complex visual documents. This limitation becomes particularly evident when processing scientific PDFs, where models must identify and reason about specific visual elements scattered across multi-page documents. We introduce <strong>ScienVisionQA</strong>, a benchmark designed to evaluate page-level localization capabilities in scientific document understanding. Our dataset contains 1,323 question-answer pairs derived from 300 scientific papers across physics, mathematics, computer science, and life sciences. Each question targets a specific visual element (figure, table, equation, or caption) on a designated page, requiring models to first locate the relevant page before reasoning about its contents. Through extensive evaluation of state-of-the-art VLMs, we demonstrate a significant localization gap: models achieve 11-31 percentage points higher accuracy when provided with the target page compared to the full document. To address this challenge, we propose a simple yet effective distractor training approach that teaches models to identify relevant pages among distractors, improving performance by up to 11.6 points. Our analysis reveals that while current VLMs possess strong reasoning capabilities, their localization abilities remain a critical bottleneck for complex document understanding tasks.
+                        Modern vision–language models (VLMs) excel at free-form reasoning over images, yet they still struggle with precise localization in complex visual documents. This limitation becomes particularly evident when processing scientific papers, where models must identify and reason about specific visual elements scattered across multi-page documents. We introduce <strong>ScienVisionQA</strong>, a benchmark designed to evaluate page-level localization capabilities in scientific document understanding. Our dataset contains 1,323 question-answer pairs derived from 300 scientific papers across physics, mathematics, computer science, and life sciences. Each question targets a specific visual element (figure, table, equation, or caption) on a designated page, requiring models to first locate the relevant page before reasoning about its contents. Through extensive evaluation of state-of-the-art VLMs, we demonstrate a significant localization gap: models achieve 11-31 percentage points higher accuracy when provided with the target page compared to the full document. To address this challenge, we propose a simple yet effective distractor training approach that teaches models to identify relevant pages among distractors, improving performance by up to 11.6 points. Our analysis reveals that while current VLMs possess strong reasoning capabilities, their localization abilities remain a critical bottleneck for complex document understanding tasks.
                     </p>
                 </div>
 
@@ -434,7 +434,7 @@
                 <div class="faq-section">
                     <div class="faq-item">
                         <h3>What is page-level localization?</h3>
-                        <p>Page-level localization refers to the ability of vision-language models to first identify which specific page in a multi-page document contains the information relevant to answering a question, before attempting to reason about the visual content on that page. This is a critical capability for processing scientific PDFs where relevant information may be scattered across many pages.</p>
+                        <p>Page-level localization refers to the ability of vision-language models to first identify which specific page in a multi-page document contains the information relevant to answering a question, before attempting to reason about the visual content on that page. This is a critical capability for processing scientific papers where relevant information may be scattered across many pages.</p>
                     </div>
                     
                     <div class="faq-item">
