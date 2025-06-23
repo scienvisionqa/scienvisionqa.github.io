@@ -59,6 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const downloadButtons = document.querySelectorAll('.download-btn');
     downloadButtons.forEach(button => {
         button.addEventListener('click', function(e) {
+            // Skip demo alert for actual files
+            if (this.href && !this.href.includes('#')) {
+                return; // Let the real download proceed
+            }
+            
             e.preventDefault();
             
             // Show alert for demo purposes (replace with actual download logic)
