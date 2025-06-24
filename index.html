@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScienVisionQA: When Localization Matters for Scientific Document Understanding</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/2.1.1/css/colReorder.dataTables.min.css">
 </head>
 <body>
     <!-- Anonymous Review Banner -->
@@ -26,6 +28,7 @@
             <ul class="nav-tabs">
                 <li><button class="nav-btn active" data-tab="home">Home</button></li>
                 <li><button class="nav-btn" data-tab="dataset">Dataset</button></li>
+                <li><button class="nav-btn" data-tab="samples">Samples</button></li>
                 <li><button class="nav-btn" data-tab="methodology">Methodology</button></li>
                 <li><button class="nav-btn" data-tab="results">Results</button></li>
                 <li><button class="nav-btn" data-tab="supplementary">Supplementary</button></li>
@@ -181,6 +184,25 @@
                 <div class="figure-container">
                     <h3>Figure 2: Dataset composition across visual element types, answer formats, and information sources.</h3>
                     <img src="figures/figure2.png" alt="Three bar/pie charts showing distribution of element types, answer formats and modality mix." class="figure-image">
+                </div>
+            </section>
+
+            <!-- SAMPLES TAB -->
+            <section id="samples" class="tab-content">
+                <h2>Samples</h2>
+                <div>
+                    <table id="samplesTable" class="display">
+                        <thead>
+                            <tr>
+                                <th>Paper ID</th>
+                                <th>Page</th>
+                                <th>Question</th>
+                                <th>Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
@@ -486,7 +508,9 @@
             <p>&copy; 2024 ScienVisionQA. Under peer review - temporary anonymous website.</p>
         </div>
     </footer>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/colreorder/2.1.1/js/dataTables.colReorder.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

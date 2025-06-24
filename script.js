@@ -289,6 +289,36 @@ document.addEventListener('DOMContentLoaded', function() {
             element.title = tooltip;
         });
     });
+    function replaceLastHyphen(str) {
+        const lastIndex = str.lastIndexOf('-');
+        if (lastIndex === -1) return str; // No hyphen found
+        return str.substring(0, lastIndex) + '/' + str.substring(lastIndex + 1);
+    }
+    $(document).ready( function () {
+        $('#samplesTable').DataTable({
+            ajax: {
+                url: 'sample_data.json',
+                dataSrc: '',
+            },
+            columns: [
+                { 
+                    data: 'paper_id',
+                    fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                        $(nTd).html("<a href='https://arxiv.org/pdf/"+replaceLastHyphen(oData.paper_id)+"#page="+oData.page+"' target='_blank'>"+oData.paper_id+"</a>");
+                    }
+                },
+                { data: 'page' },
+                { data: 'question', width: '40%' },
+                { data: 'answer', width: '40%' },
+            ],
+            colReorder: {
+                enable: true,
+            },
+            order: [],
+            scrollX: true,
+            responsive: true
+        });
+    } );
 
     console.log('🚀 ScienVisionQA website loaded successfully!');
     console.log('💡 Keyboard shortcuts:');
